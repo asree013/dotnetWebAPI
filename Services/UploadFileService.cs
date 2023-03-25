@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using dotnetFirstAPI.Interface;
 
 namespace dotnetFirstAPI.Services
@@ -15,14 +16,32 @@ namespace dotnetFirstAPI.Services
 
         public bool IsUpload(List<FormFile> formFiles) => formFiles != null && formFiles.Sum(f => f.Length) > 0;
 
-        public string Validation(List<FormFile> formFile)
+        public string Validation(List<FormFile> formFiles)
         {
-            throw new NotImplementedException();
+            foreach (var formFile in formFiles) {
+                if(!ValidationExtention(formFile.FileName)){
+                    return "Invalid File Extension";
+                }
+                if(ValidationSize(formFile.Length)){
+                    return "Invalid file Extension";
+                }
+            }
+            return null;
         }
 
-        public Task<List<string>> UploadImage(List<FormFile> formFiles)
+        public async Task<List<string>> UploadImage(List<FormFile> formFiles)
         {
-            throw new NotImplementedException();
+            List<string> listFileName = new List<string>();
+            string uploadPath = $"{webHostEnvironment.WebRootPath}/images";
+            foreach (var formFile in formFiles) {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+                string fullPath = uploadPath + fileName;
+                using(var stream = File.Create(fullPath)){
+                    await formFile.CopyToAsync(stream);
+                }
+                listFileName.Add(fileName);
+            }
+            return listFileName;
         }
 
         public bool ValidationExtention(string fileName)
