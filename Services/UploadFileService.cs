@@ -14,9 +14,9 @@ namespace dotnetFirstAPI.Services
             this.Configuration = configuration;
         }
 
-        public bool IsUpload(List<FormFile> formFiles) => formFiles != null && formFiles.Sum(f => f.Length) > 0;
+        public bool IsUpload(List<IFormFile> formFiles) => formFiles != null && formFiles.Sum(f => f.Length) > 0;
 
-        public string Validation(List<FormFile> formFiles)
+        public string Validation(List<IFormFile> formFiles)
         {
             foreach (var formFile in formFiles) {
                 if(!ValidationExtention(formFile.FileName)){
@@ -29,7 +29,7 @@ namespace dotnetFirstAPI.Services
             return null;
         }
 
-        public async Task<List<string>> UploadImage(List<FormFile> formFiles)
+        public async Task<List<string>> UploadImage(List<IFormFile> formFiles)
         {
             List<string> listFileName = new List<string>();
             string uploadPath = $"{webHostEnvironment.WebRootPath}/images";

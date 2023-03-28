@@ -45,14 +45,20 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Product>> AddProdcut([FromForm] ProductRequest productRequest)
     {
+        (string errorMessage, string imageName) = await productService.UploadImage(productRequest.FormFiles);
+        if (!String.IsNullOrEmpty(errorMessage))
+        {
+            return BadRequest();
+        }
         var product = productRequest.Adapt<Product>();
+        product.Image = imageName;
         await productService.CreateProdcut(product);
         return StatusCode((int)HttpStatusCode.Created);
     }
     [HttpPut("{id}")]
-    public async Task<ActionResult<Product>> UpdateProduct(int id, [FromForm] ProductRequest prodcutRequest)
+    public async Task<ActionResult<Product>> UpdateProduct(int id, [FromForm] ProductRequest productRequest)
     {
-        if (id != prodcutRequest.ProductId)
+        if (id != productRequest.ProductId)
         {
             return BadRequest();
         }
@@ -62,7 +68,19 @@ public class ProductsController : ControllerBase
         {
             return NotFound();
         }
-        prodcutRequest.Adapt(product);
+
+        (string errorMessage, string imageName) = await productService.UploadImage(productRequest.FormFiles);
+        if (!String.IsNullOrEmpty(errorMessage))
+        {
+            return BadRequest();
+        }
+
+        if (!string.IsNullOrEmpty(imageName))
+        {
+            product.Image = imageName;
+        }
+
+        productRequest.Adapt(product);
 
         await productService.UpdateProduct(product);
         return NoContent();

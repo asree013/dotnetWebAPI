@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using dotnetFirstAPI.Entities;
 
 namespace dotnetFirstAPI.Interface
@@ -10,5 +11,6 @@ namespace dotnetFirstAPI.Interface
         Task UpdateProduct(Product product);
         Task DeleteProduct(Product product);
         Task<IEnumerable<Product>> SearchProdcut(string Name);
+        Task<(string errorMessage, string imageName)> UploadImage(List<IFormFile> formFiles);
     }
 }

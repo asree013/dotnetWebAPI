@@ -10,11 +10,10 @@ namespace dotnetFirstAPI.DTOs.Product
         public string Name { get; set; } = null!;
         [Range(0, 1000)]
         public int Stock { get; set; }
-        [Range(0, 100_000)]
+        [Range(0, 100000)]
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
-
-        public List<IFormFile> FormFiles { get; set; } = null!;
+        public List<IFormFile>? FormFiles { get; set; }
 
     }
 }

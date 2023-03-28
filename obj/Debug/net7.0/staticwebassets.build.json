@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "hyH59Eb0lqHZ/Jzx3gTnIWOKcyQ1VIh2D6Jvy9g8iJk=",
+  "Hash": "XphME3WXppFr1L6ThHDHfSkbbcZPwSjHAtwjnmtUpb4=",
   "Source": "dotnetFirstAPI",
   "BasePath": "_content/dotnetFirstAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "dotnetFirstAPI\\wwwroot",
+      "Source": "dotnetFirstAPI",
+      "ContentRoot": "D:\\Web App\\dotnet\\dotnetFirstAPI\\wwwroot\\",
+      "BasePath": "_content/dotnetFirstAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

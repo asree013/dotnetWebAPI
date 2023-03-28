@@ -79,3 +79,4 @@ D:\Web App\dotnet\dotnetFirstAPI\bin\Debug\net7.0\Mapster.dll
 D:\Web App\dotnet\dotnetFirstAPI\bin\Debug\net7.0\Mapster.Core.dll
 D:\Web App\dotnet\dotnetFirstAPI\bin\Debug\net7.0\Autofac.dll
 D:\Web App\dotnet\dotnetFirstAPI\bin\Debug\net7.0\Autofac.Extensions.DependencyInjection.dll
+D:\Web App\dotnet\dotnetFirstAPI\bin\Debug\net7.0\dotnetFirstAPI.staticwebassets.runtime.json
